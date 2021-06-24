@@ -49,6 +49,8 @@
     <Reports>@(Report)</Reports>
   </PropertyGroup>
   <ItemGroup>
+    <DataSet Include="MostRecentYears.rsd" />
+    <DataSet Include="Salespeople.rsd" />
     <DataSet Include="Years.rsd" />
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,14 @@
     <DataSet Name="CustomerData">
       <Query>
         <DataSourceName>WildWorldImportersDW</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@pYear">
+            <Value>=Parameters!pYear.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@pSalesperson">
+            <Value>=Parameters!pSalesperson.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>-- Main Report Query
 SELECT fs.[City Key] AS CityKey
      , dd.[Calendar Year] AS DeliveryYear
@@ -31,6 +39,8 @@ SELECT fs.[City Key] AS CityKey
     ON fs.[Bill To Customer Key] = du.[Customer Key]
   JOIN [Dimension].[Employee] de 
     ON fs.[Salesperson Key] = de.[Employee Key]
+WHERE dd.[Calendar Year] IN (@pYear)
+  AND de.[Employee]  IN (@pSalesperson)
  GROUP BY
        fs.[City Key] 
      , dd.[Calendar Year] 
@@ -113,6 +123,28 @@ SELECT DISTINCT
         <Field Name="Calendar_Year">
           <DataField>Calendar_Year</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="MostRecentYears">
+      <SharedDataSet>
+        <SharedDataSetReference>MostRecentYears</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="Calendar_Year">
+          <DataField>Calendar_Year</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Salespeople">
+      <SharedDataSet>
+        <SharedDataSetReference>Salespeople</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="SalespersonName">
+          <DataField>SalespersonName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1273,10 +1305,60 @@ SELECT DISTINCT
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="pSalesperson">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>Salespeople</DataSetName>
+          <ValueField>SalespersonName</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Sales people</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Salespeople</DataSetName>
+          <ValueField>SalespersonName</ValueField>
+          <LabelField>SalespersonName</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="pYear">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>MostRecentYears</DataSetName>
+          <ValueField>Calendar_Year</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Sales Year</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Years</DataSetName>
+          <ValueField>Calendar_Year</ValueField>
+          <LabelField>Calendar_Year</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>pYear</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>pSalesperson</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>
