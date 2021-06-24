@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "WideWorldImporter", "WideWorldImporter\WideWorldImporter.rptproj", "{331BAAD0-BB2B-4497-B150-7C08EA1970A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{331BAAD0-BB2B-4497-B150-7C08EA1970A1}.Debug|Default.ActiveCfg = Debug
+		{331BAAD0-BB2B-4497-B150-7C08EA1970A1}.Debug|Default.Build.0 = Debug
+		{331BAAD0-BB2B-4497-B150-7C08EA1970A1}.Debug|Default.Deploy.0 = Debug
+		{331BAAD0-BB2B-4497-B150-7C08EA1970A1}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{331BAAD0-BB2B-4497-B150-7C08EA1970A1}.DebugLocal|Default.Build.0 = DebugLocal
+		{331BAAD0-BB2B-4497-B150-7C08EA1970A1}.Release|Default.ActiveCfg = Release
+		{331BAAD0-BB2B-4497-B150-7C08EA1970A1}.Release|Default.Build.0 = Release
+		{331BAAD0-BB2B-4497-B150-7C08EA1970A1}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {459E3A55-9A89-44A3-87B2-3345243BBD56}
+	EndGlobalSection
+EndGlobal
